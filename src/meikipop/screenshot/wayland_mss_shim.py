@@ -11,6 +11,8 @@ import gi
 gi.require_version('Gst', '1.0')
 from gi.repository import GLib, Gst, Gio
 
+from meikipop.paths import paths
+
 import mss as real_mss
 from mss.exception import ScreenShotError
 from mss.screenshot import ScreenShot, Size
@@ -19,7 +21,7 @@ from mss.models import Monitor
 screencast = None
 screencast_lock = threading.Lock()
 
-token_file = Path('~/.cache/.ocr_screencapture_token').expanduser()
+token_file = Path(paths.cache_dir) / '.ocr_screencapture_token'
 persist_token = str(uuid.UUID(int=0))
 
 if token_file.exists():
